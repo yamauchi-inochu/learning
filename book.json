@@ -37,14 +37,18 @@
       },
     "favicon":{
         "shortcut": "./img/favicon.ico",
-        "bookmark": "./img/favicon.ico"
+        "bookmark": "./img/favicon.ico",
+        "appleTouch": "./img/apple-touch-icon.png",
+        "appleTouchMore": {
+            "120x120": "./img/favicon.ico",
+            "180x180": "./img/favicon.ico"
         }
     },
     "ga": {
       "token": "x"
     },
     "github": {
-            "url": "https://github.com/yamauchi-inochu/learning"
+            "url": "https://github.com/yamauchi-inochu"
         },
         "github-buttons": {
          "buttons": [{

@@ -4,7 +4,7 @@
  * [ArcGIS Proビギナーズマニュアル](./ArcGISPro/1/1.md)
  * [GISデータの取得](./ArcGISPro/1/2.md)
 * [QGIS](./QGIS/README.md) 
- - [Introduction to QGIS](./Practice/a/a.md)
+ - [Introduction to QGIS](./QGIS/a/a.md)
  - [Dowonlodwing and coordinate conversion](./QGIS/b/b.md)
  - [Integrating and Modifying Spatial Data](./QGIS/c/c.md)
  - [Vector data analysis](./QGIS/d/d.md)

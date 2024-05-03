@@ -5,7 +5,7 @@ This is a hands-on training material for beginners to QGIS. Through the curricul
 Menu
 -------
 
-- [What is QGIS?] (#WhatisQGIS?)
+- [What is QGIS?](#WhatisQGIS)
 - [Installation](#Installation)
 - [Launch](#Launch)
 - [Window](#Window)
