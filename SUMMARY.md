@@ -3,7 +3,7 @@
 * [ArcGIS Pro](./ArcGISPro/README.md)
  * [ArcGIS Proビギナーズマニュアル](./ArcGISPro/1/1.md)
  * [GISデータの取得](./ArcGISPro/2/2.md)
- * [空間データの座標変換](./ArcGISPro/2/3.md)
+ * [空間データの座標変換](./ArcGISPro/3/3.md)
 * [ArcGIS Online](./ArcGISOnline/README.md)
  * [地図の作成とオンライン公開](./ArcGISOnline/1/ao1.md)
 * [QGIS](./QGIS/README.md) 

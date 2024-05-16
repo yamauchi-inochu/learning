@@ -1,0 +1,89 @@
+<html>
+
+<head>
+
+<title>webmap</title>
+
+     <link rel=""stylesheet""
+href=""https://unpkg.com/leaflet@1.9.4/dist/leaflet.css""
+integrity=""sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=""
+crossorigin=""""/>
+
+<script src=""https://unpkg.com/leaflet@1.9.4/dist/leaflet.js""
+integrity=""sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=""
+crossorigin=""""></script>
+
+</head>
+
+<body>
+
+<div id=""map"" style=""width: 500px; height: 500px;""></div>
+
+<script>
+
+const basemap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+maxZoom: 19,
+
+attribution: '&copy; <a href=""http://www.openstreetmap.org/copyright"">OpenStreetMap</a>'
+
+}).addTo(webmap);
+
+const addmap1 = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/ort/{z}/{x}/{y}.jpg', {
+
+maxZoom: 18,
+
+
+});
+
+var markers = L.layerGroup();
+
+L.marker([35.01352, 135.74972]).bindPopup('Ohiroma (Great Hall)').addTo(markers),
+
+L.marker([35.01312, 135.74958]).bindPopup('NScenic spot Nijo Castle Ninomaru Gardenijoujo').addTo(markers),
+
+L.marker([35.01296, 135.74995]).bindPopup('Ninomaru Garden Entrance').addTo(markers),
+
+L.marker([35.01417,135.75093]).bindPopup('Exhibition and collection hall').addTo(markers),
+
+L.marker([34.98581, 135.76064]).bindPopup('Theatre Kyoto-Gekijo').addTo(markers);
+
+const webmap = L.map('map',{
+
+center:[35.0008,135.7328],
+
+zoom:12,
+
+layers:[basemap,markers]
+
+});
+
+
+const maps = {
+
+""OSM"":basemap,
+
+""Aerial photo（2007～）"":addmap1
+
+};
+
+
+const spots = {
+
+""Sightseeing spots"": markers,
+
+};
+
+
+L.control.layers(maps,spots).addTo(webmap);
+
+
+L.control.scale({imperial: false}).addTo(webmap);
+
+
+
+</script>
+
+</body>
+
+</html>
