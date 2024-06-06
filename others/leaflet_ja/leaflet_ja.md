@@ -144,12 +144,17 @@ Leafletは、WEB地図の作成のためのオープンソースJavaScriptライ
 `<body> `の`<script>` を以下のように記述します。`setView([xxxx,xxxxx], 13)`の箇所には、中央に表示したい場所の座標、初期表示のズームレベルを記載します。ここでは、デフォルトの地図画像として`L.tileLayer`を使って、OpenStreetMap (OSM)を読み込みます。
 
 ```JavaScript
-	const webmap = L.map('map').setView([34.9849,135.7586], 14);
 
-	const basemap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: 19,
-		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-	}).addTo(webmap);
+const basemap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        })
+
+const webmap = L.map('map',{
+            center:[34.9849,135.7586],
+            zoom:12,
+            layers:[basemap]
+        });
 	
 ```
 
