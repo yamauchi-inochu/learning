@@ -1,6 +1,6 @@
 # Introduction to QGIS
 
-This is a hands-on training material for beginners to QGIS. Through the curriculum, participants can learn the characteristics of  spatial data, displaying data in GIS, changing symbols, map layout, etc., while actually operating QGIS.
+This is a hands-on training material for QGIS beginners. Through this section, the users can learn the characteristics of spatial data, displaying GIS data on the software, changing layer symbols, map layout, etc., while actually operating QGIS.
 
 Menu
 -------
@@ -24,40 +24,37 @@ Menu
 
 ### Data for practice.
 
-Please download [tokyo.zip] before proceed with the training.
+Please download [tokyo.zip] before proceeding with this training.
 
 [tokyo.zip]:https://github.com/gis-oer/datasets/raw/master/tokyo.zip
 
 ----
 
 ## What is QGIS?
-QGIS is a free, open source (provided under GNU General Public License v2) Geospatial Information Systems (GIS) that runs on Windows, Mac, Linux, Unix, Android, and many other environments. It can be used with various plug-ins and in conjunction with other open source GIS such as GRASS and PostGIS to enable various types of analysis. The software is easy to learn GIS.  
+QGIS is a free and open source (provided under GNU General Public License v2) Geographic Information Systems (GIS) that runs on Windows, Mac, Linux, Unix, Android, and many other environments. It can be used with various plug-ins and in conjunction with other open source GIS such as GRASS and PostGIS to enable various types of spatial analysis. The software is sutable for learning GIS easily and systematically.  
 
 > Referring to http://qgis.org/ja/site/about/index.html
 
 [▲ Back to Menu]
 
 ## Installation
-There are two versions of QGIS: the latest version and the LTR (Long-Term Release) version, which has one year of bug fix support; the GIS training open material mainly uses the LTR version, QGIS3.28. Follow the instructions below to install QGIS (downloading the LTR version is recommended).
+There are two versions of QGIS: the latest version and the LTR (Long-Term Release) version, which has one year of bug fix support; this material mainly uses the LTR version, QGIS3.28. Follow the instructions below to install QGIS (downloading the LTR version is recommended).
 Install the latest LTR version
-Go to the home page of [QGIS](https://qgis.org/ja/site/index.html) and click ‘Download QGIS 3.28’. Materials correspond to the LTR version of QGIS 3.28.11 (LTR) 
-![Install]
-(./pic/Qpic1.png)
+
+Move to the web page of [QGIS](https://qgis.org/ja/site/index.html) and click ‘Download QGIS 3.28’. Materials correspond to the LTR version of QGIS 3.28.11 (LTR) 
+![Install](./pic/Qpic1.png)
 
 Select 32-bit or 64-bit version according to your PC environment to start downloading.
-![Install]
-(./pic/Qpic2.png)
+![Install](./pic/Qpic2.png)
 
 After the download is complete, run the .exe file to install QGIS.
-![Install]
-(./pic/Qpic3.png)
+![Install](./pic/Qpic3.png)
 
 [▲ Back to Menu]
 
 ## Installing the Mac version
 For the Mac version, download the installer (`qgis-macos-ltr.dmg`) from the QGIS homepage, just like the Windows version. After executing the .dmg, the following window will appear, click Agree.
 ![Install](././pic/Qpic2_mac.png)
-
 
 [▲ Back to Menu].
 
