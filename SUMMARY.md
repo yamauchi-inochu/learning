@@ -45,8 +45,8 @@
 		- [課題③](./QGIS_3days/day3/tasks/t_15_1.md)
 		- [空間補間](./QGIS_3days/day3/18.md)
 		- [課題④〜⑤](./QGIS_3days/day3/tasks/t_18.md)
-* [その他](./others/README.md)
- * [野外での地理情報の収集](./others/mobile/mobile.md)
- * [Leafletでの地図作成](./others/leaflet_ja/leaflet_ja.md)
+* [Others](./others/README.md)
+ * [3D scanning using mobile](./others/3d_scanning/33d_scanning.md)
+ * [Leaflet for beginners](./others/leaflet_ja/leaflet_ja.md)
 
 
