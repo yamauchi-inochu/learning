@@ -761,7 +761,7 @@
                 <a href="../../others/">
             
                     
-                    その他
+                    Others
             
                 </a>
             
@@ -770,12 +770,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.6.1" data-path="../../others/mobile/mobile.html">
+        <li class="chapter " data-level="1.6.1" data-path="../../others/3d_scanning/33d_scanning.md">
             
-                <a href="../../others/mobile/mobile.html">
+                <span>
             
                     
-                    野外での地理情報の収集
+                    3D scanning using mobile
             
                 </a>
             
@@ -788,7 +788,7 @@
                 <a href="../../others/leaflet_ja/leaflet_ja.html">
             
                     
-                    Leafletでの地図作成
+                    Leaflet for beginners
             
                 </a>
             
@@ -846,7 +846,105 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="領域分析と空間検索-preparing">領域分析と空間検索 Preparing</h1>
+                                <h1 id="領域分析と検索">領域分析と検索</h1>
+<p>GISソフトウェア（ArcGIS Pro）を用いた、領域分析(バッファ)と空間検索の実習用教材です。</p>
+<h2 id="menu"><strong>Menu</strong></h2>
+<ul>
+<li><a href="#バッファ">バッファ</a></li>
+<li><a href="#空間検索">空間検索</a></li>
+<li><a href="#属性検索">属性検索</a></li>
+</ul>
+<p><strong>実習用データ</strong></p>
+<p>実習をはじめる前に、<a href="https://github.com/gis-oer/datasets/raw/master/s/tokyo_s.zip" target="_blank">tokyo</a>をダウンロードしてください。今回は、<code>cvs_jgd2011_s</code>と<code>post_office_s</code>を使用するため、事前に平面直角座標系に変換する。</p>
+<h2 id="バッファ">バッファ</h2>
+<p>　バッファは、地物からの距離に応じて一定の領域を作成する手法です。以下では、ArcGIS Proと実習用データを利用し、ポイントデータからバッファを作成する手法や、一定の距離に区切った多重リングバッファを作成する手法について解説します。</p>
+<h3 id="点バッファの作成">点バッファの作成</h3>
+<p>東京都のコンビニデータを読み込む。次に、バッファを作成するために、<code>Analysis &gt; Tools &gt; Buffer</code>を選択する。
+<img src="img/7-1.png" alt="img"></p>
+<p>以下の手順を実行すると、コンビニから500mのバッファが作成できる。
+<img src="img/7-2.png" alt="img"></p>
+<ol>
+<li>入力レイヤを指定</li>
+<li>出力レイヤを指定</li>
+<li><code>Linear Unit</code>を選択</li>
+<li><code>Meters</code>を選択</li>
+<li><code>500</code>とする</li>
+<li><code>Method</code>を<code>Planar</code>にする</li>
+<li><code>Dissolve Type</code>を<code>No Dissolve</code>を選択</li>
+<li><code>Run</code>を実行</li>
+</ol>
+<p>同じ手順で、<code>Dissolve Type</code>を<code>Dissolve all output features into a single feature</code>にすると、境界が融合されたポリゴンが作成できる。
+<img src="img/7-3.png" alt="img"></p>
+<h3 id="線バッファと面バッファ">線バッファと面バッファ</h3>
+<p>ラインやポリゴンを入力レイヤとして、点バッファの作成と同じ手順でバッファの作成を実行すると、以下のようなバッファが作成できる。
+<img src="img/7-4.png" alt="img"></p>
+<h3 id="多重リングバッファ">多重リングバッファ</h3>
+<p>多重リングバッファでは、一定間隔ごとにバッファを作成できる。<code>Analysis &gt; Tools &gt; Multiple Buffer</code>を選択する。
+<img src="img/7-5.png" alt="img"></p>
+<p>以下の手順で、500mの範囲のバッファを100ｍごとに分割して作成する。
+<img src="img/7-6.png" alt="img"></p>
+<ol>
+<li>入力レイヤを指定</li>
+<li>出力レイヤを指定</li>
+<li><code>Distances</code>を100～500mまでを100mごとに入力する</li>
+<li><code>Distance Unit</code>を<code>Meters</code>とする</li>
+<li><code>Buffer Distance Field Name</code>を<code>distance</code>とする</li>
+<li><code>Dissolve Option</code>を<code>Non-overapping (rings)</code>とする</li>
+<li><code>Method</code>を<code>Planar</code>とする</li>
+</ol>
+<p><a href="7.html#Menu">▲Menu</a></p>
+<h2 id="空間検索">空間検索</h2>
+<p>　以下では、バッファで作成した領域を用いた空間検索の手法を解説します。空間検索は、データのジオメトリーの情報を利用してデータを検索する手法です。ここからは、上記で作成したコンビニから500mのポリゴン（<code>Dissolve Type</code>を<code>No Dissolve</code>としたもの）を用いて、その中に含まれる郵便局のデータを特定していきます。</p>
+<p><code>Map &gt; Select By Location</code>をクリックし、次の手順を実行すると各コンビニから500ｍの範囲にある郵便局に該当するレイヤが選択できる。
+<img src="img/7-7.png" alt="img"></p>
+<p><img src="img/7-8.png" alt="img"></p>
+<ol>
+<li>入力レイヤを指定</li>
+<li><code>Relationship</code>を<code>Intersect</code>にする</li>
+<li><code>Selecting Features</code>を各コンビニから算出した500mバッファにする</li>
+<li><code>New Selection</code>になっていることを確認する </li>
+<li><code>Apply</code>を実行する</li>
+</ol>
+<blockquote>
+<p>ここでは、2で<code>Intersect</code>を指定したが、他のパラメータについては<a href="https://pro.arcgis.com/ja/pro-app/latest/tool-reference/data-management/select-by-location-graphical-examples.htm" target="_blank">空間条件で選択: 図の例</a>が詳しい。</p>
+</blockquote>
+<p>郵便局のレイヤの属性テーブルを表示し、結果を確認する。以下のように、赤枠のボタンをクリックすると選択した情報のみが表示される。ここでは、選択しているポイントの数が、青枠内に記載されていることを確認しておく。
+<img src="img/7-9.png" alt="img"></p>
+<p><a href="7.html#Menu">▲Menu</a></p>
+<h2 id="属性検索">属性検索</h2>
+<p>GISでは、空間検索の他に属性情報からデータを検索する手法があります。以下では、属性検索の手法について解説します。</p>
+<p>属性検索をする前に、各コンビニから算出した500mのポリゴンに含まれる郵便局の数を算出する。<code>Analysis &gt; Tools &gt; Summarize Within</code>を選択する。
+<img src="img/7-10.png" alt="img"></p>
+<p>以下の手順を実行すると、属性テーブルに結果が算出される。
+<img src="img/7-11.png" alt="img"></p>
+<ol>
+<li><code>Input Polygons</code>を各コンビニから算出した500mのポリゴンにする</li>
+<li><code>Input Summary Features</code>を郵便局のポイントデータにする</li>
+<li>出力レイヤを指定する</li>
+<li><code>Run</code>を実行し、属性テーブルに結果が算出されていることを確認する（列で右クリックし、<code>Sort Descending</code>をクリックすると降順に表示できる）</li>
+</ol>
+<p><code>Map &gt; Select By Attributes</code>をクリックし、属性検索を実行する。
+<img src="img/7-12.png" alt="img"></p>
+<p>ここでは以下のように、500ｍの範囲に、5つ以上の郵便局をもつコンビニ（バッファ）を特定する。
+<img src="img/7-13.png" alt="img"></p>
+<ol>
+<li>属性検索するレイヤ（郵便局数を算出したポリゴン）を選択する</li>
+<li><code>Selection Type</code>を<code>New Selection</code>とする</li>
+<li>Count of Points : 郵便局数が格納された列名を指定</li>
+<li><code>is greater than or equal to</code>を選択</li>
+<li>今回は<code>5</code>とする</li>
+<li><code>Apply</code>し結果を確認し、<code>OK</code>をクリックすると結果が確認できる。</li>
+</ol>
+<p>属性検索は、属性情報を検索する機能であるため、地名や施設名などのテキストも検索できる。以下の右図のように、SQLでも属性検索ができる。
+<img src="img/7-14.png" alt="img"></p>
+<p><a href="7.html#Menu">▲Menu</a></p>
+<h2 id="課題">課題</h2>
+<p>　この実習は、ポイントデータから領域を作成する手法として、バッファの作成と空間検索を行うものです。大阪市およびその周辺の河川（<code>river_s.shp</code>）と学校（<code>school_s.shp</code>）を用いて、河川(<code>river_s.shp</code>)から200m圏内に含まれる学校の件数を算出してください。その後、完成例のような地図を作成し、パワポなどで地図の中に算出したポイント数を記載してください。</p>
+<h3 id="実習用データ">実習用データ</h3>
+<p>実習をはじめる前に、<a href="https://github.com/gis-oer/datasets/raw/master/s/osaka_s.zip" target="_blank">osaka</a>をダウンロードしてください。</p>
+<h3 id="完成例">完成例</h3>
+<p><img src="img/t13-1.png" alt="img"></p>
+<p><a href="7.html#Menu">▲Menu</a></p>
 
                                 
                                 </section>
@@ -890,7 +988,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"領域分析と空間検索","level":"1.2.7","depth":2,"next":{"title":"ポイントデータの可視化と集計","level":"1.2.8","depth":2,"path":"ArcGISPro/8/8.md","ref":"./ArcGISPro/8/8.md","articles":[]},"previous":{"title":"基本的な空間解析","level":"1.2.6","depth":2,"path":"ArcGISPro/6/6.md","ref":"./ArcGISPro/6/6.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","-sharing-plus","collapsible-menu","creativecommons","favicon","ga","github","github-buttons"],"root":".","styles":{"website":"styles/website.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yamauchi-inochu/learning"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":{"shortcut":"./img/favicon.ico","bookmark":"./img/favicon.ico","appleTouch":"./img/apple-touch-icon.png","appleTouchMore":{"120x120":"./img/favicon.ico","180x180":"./img/favicon.ico"}},"github-buttons":{"buttons":[{"user":"yamauchi-inochu","repo":"learning","type":"star","size":"small","count":true}]},"creativecommons":{},"ga":{"configuration":"auto","token":"x"},"sharing":{"qq":false,"all":["facebook","google"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"test","honkit":">= 4.0.4","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"test","language":"ja","gitbook":"*"},"file":{"path":"ArcGISPro/7/7.md","mtime":"2024-05-27T01:13:38.823Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2024-06-13T08:03:40.505Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"領域分析と空間検索","level":"1.2.7","depth":2,"next":{"title":"ポイントデータの可視化と集計","level":"1.2.8","depth":2,"path":"ArcGISPro/8/8.md","ref":"./ArcGISPro/8/8.md","articles":[]},"previous":{"title":"基本的な空間解析","level":"1.2.6","depth":2,"path":"ArcGISPro/6/6.md","ref":"./ArcGISPro/6/6.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","-sharing-plus","collapsible-menu","creativecommons","favicon","ga","github","github-buttons"],"root":".","styles":{"website":"styles/website.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yamauchi-inochu/learning"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":{"shortcut":"./img/favicon.ico","bookmark":"./img/favicon.ico","appleTouch":"./img/apple-touch-icon.png","appleTouchMore":{"120x120":"./img/favicon.ico","180x180":"./img/favicon.ico"}},"github-buttons":{"buttons":[{"user":"yamauchi-inochu","repo":"learning","type":"star","size":"small","count":true}]},"creativecommons":{},"ga":{"configuration":"auto","token":"x"},"sharing":{"qq":false,"all":["facebook","google"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"test","honkit":">= 4.0.4","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"test","language":"ja","gitbook":"*"},"file":{"path":"ArcGISPro/7/7.md","mtime":"2024-06-19T06:05:44.738Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2024-06-19T06:06:46.480Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
