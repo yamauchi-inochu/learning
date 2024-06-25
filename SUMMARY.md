@@ -8,7 +8,7 @@
  * [GISデータの作成](./ArcGISPro/5/5.md)
  * [基本的な空間解析](./ArcGISPro/6/6.md)
  * [領域分析と空間検索](./ArcGISPro/7/7.md)
- * [ポイントデータの可視化と集計](./ArcGISPro/8/8.md)
+ * [ポイントデータの集計とテーブル結合](./ArcGISPro/8/8.md)
  * [標高データの可視化と分析](./ArcGISPro/9/9.md)
 * [ArcGIS Online](./ArcGISOnline/README.md)
  * [地図の作成とオンライン公開](./ArcGISOnline/1/ao1.md)
