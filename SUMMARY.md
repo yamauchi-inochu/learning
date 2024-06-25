@@ -46,7 +46,7 @@
 		- [空間補間](./QGIS_3days/day3/18.md)
 		- [課題④〜⑤](./QGIS_3days/day3/tasks/t_18.md)
 * [Others](./others/README.md)
- * [3D scanning using mobile](./others/3d_scanning/33d_scanning.md)
+ * [Mobile 3D scanning](./others/3d_scanning/3d_scanning.md)
  * [Leaflet for beginners](./others/leaflet_ja/leaflet_ja.md)
 
 
