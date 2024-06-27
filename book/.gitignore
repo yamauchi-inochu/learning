@@ -1,0 +1,8 @@
+.DS_Store
+QGIS/e
+book/QGIS/e
+node_modules
+package-lock.json
+_book
+*.pptx
+
