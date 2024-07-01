@@ -846,7 +846,100 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="標高データの可視化と分析-preparing">標高データの可視化と分析 Preparing</h1>
+                                <h1 id="標高データの可視化と分析">標高データの可視化と分析</h1>
+<p>　本教材は、「ラスタデータの分析」の実習用教材です。各セルに標高値を保持しているラスタデータを用いて、地形解析の手法について解説しています。本教材では、数値標高モデル(DEM)として整備されたデータを用います。DEMは、Digital Elevation Modelの略であり、地形解析等に用いられるデータです。</p>
+<h2 id="menu"><strong>Menu</strong></h2>
+<ul>
+<li><a href="#基本統計量の確認">基本統計量の確認</a></li>
+<li><a href="#数値標高モデルの視覚的分析">数値標高モデルの視覚的分析</a></li>
+</ul>
+<p><strong>実習用データ</strong></p>
+<p>実習をはじめる前に、<a href="https://github.com/gis-oer/datasets/raw/master/aso.zip" target="_blank">aso</a>をダウンロードしてください。</p>
+<h2 id="基本統計量の確認">基本統計量の確認</h2>
+<p>分析をはじめる前に、ラスタデータが保持する情報を確認する。まずは、ラスタデータをArcGIS Proに読み込む。この際、以下のウィンドウが出る場合は、<code>Yes</code>を選択する。
+<img src="img/9-1.png" alt="img"></p>
+<h3 id="セル値">セル値</h3>
+<p>ラスタデータは、各セルに値を持っている。今回使用しているのはDEMであるため、標高値となる。<code>Imagery &gt; Image Information</code>を選択する。次に、ポイントのアイコンをクリックし、セル値をしりたい場所を地図で選択すると、緑枠内に標高値が表示される。×アイコンをクリックすると、点表示をオフにできる。
+<img src="img/9-2.png" alt="img"></p>
+<h3 id="統計量">統計量</h3>
+<p><code>Properties &gt; Source &gt; Statistics</code>を選択すると、最小値、最大値、平均値、標準偏差が確認できる。
+<img src="img/9-3.png" alt="img"></p>
+<h3 id="ヒストグラム">ヒストグラム</h3>
+<p><code>Properties &gt; Create Chart &gt; Histogram</code>を選択し、NumberでBand 1を指定すると、ヒストグラムが作成できる。
+<img src="img/9-4.png" alt="img"></p>
+<p>以下のようにすると、csvファイルや画像を出力できる。
+<img src="img/9-5.png" alt="img"></p>
+<p><a href="9.html#Menu">▲Menu</a></p>
+<h2 id="数値標高モデルの視覚的分析">数値標高モデルの視覚的分析</h2>
+<p>　標高値を保持しているラスタデータを用いることで、傾斜区分図、斜面方位図、陰影図、3D地図、断面図を作成することができます。以下では、その手法について解説しています。</p>
+<h3 id="標高段彩図の作成">標高段彩図の作成</h3>
+<p><code>空間データの作成</code>の教材を参考にすると、以下のように標高値に応じた色分けができる。
+<img src="img/9-6.png" alt="img"></p>
+<h3 id="傾斜区分図の作成">傾斜区分図の作成</h3>
+<p><code>Analysis &gt; Tools &gt; Slope</code>を選択する（3D Analyst Toolの方を選択）。
+<img src="img/9-7.png" alt="img"></p>
+<p><img src="img/9-8.png" alt="img"></p>
+<ol>
+<li>入力ラスタを選択</li>
+<li>出力ラスタを選択</li>
+<li><code>Output measurement</code>を<code>Degree</code>とする</li>
+<li><code>Run</code>を実行</li>
+</ol>
+<h3 id="斜面方位図の作成">斜面方位図の作成</h3>
+<p><code>Analysis &gt; Tools &gt; Aspect</code>を選択する（3D Analyst Toolの方を選択）。
+<img src="img/9-9.png" alt="img"></p>
+<p><img src="img/9-10.png" alt="img"></p>
+<ol>
+<li>入力ラスタを選択</li>
+<li>出力ラスタを選択</li>
+<li><code>Run</code>を実行</li>
+</ol>
+<p>以下のようにすると、配色を調整できる（0（北）ー360（北）。
+<img src="img/9-11.png" alt="img"></p>
+<h3 id="陰影図">陰影図</h3>
+<p><code>Analysis &gt; Tools &gt; Hillshade</code>を選択する（3D Analyst Toolの方を選択）。
+<img src="img/9-12.png" alt="img"></p>
+<p><img src="img/9-13.png" alt="img"></p>
+<ol>
+<li>入力ラスタを選択</li>
+<li>出力ラスタを選択</li>
+<li><code>Run</code>を実行</li>
+</ol>
+<p>以下のように陰影図の上に、透過した標高段彩図のレイヤを重ねると、凹凸と標高が対応した地図表現ができる。レイヤの順を緑枠のように調整し、<code>Raster Layer &gt; Transparency</code>を選択する。今回は、標高段彩図の透過度を<code>25.0%</code>とする。
+<img src="img/9-14.png" alt="img"></p>
+<h3 id="地形断面図の作成">地形断面図の作成</h3>
+<p><code>Analysis &gt; Tools &gt; Profile</code>を選択する。
+<img src="img/9-15.png" alt="img"></p>
+<p><img src="img/9-16.png" alt="img"></p>
+<ol>
+<li>入力フィーチャーを<code>Lines</code>に設定</li>
+<li>断面をとる線を作成</li>
+<li>線の作成後、<code>Finish</code>(チェックマーク)アイコンを２回クリック</li>
+<li><code>Run</code>を実行</li>
+</ol>
+<p><code>Properties &gt; Create Chart &gt; Profile Graph</code>を選択すると地形の断面図が作成される。<strong>縦軸と横軸が1：1でない断面図は、地形が変形するため、傾斜などの解釈に注意が必要となる。</strong>
+<img src="img/9-17.png" alt="img"></p>
+<h3 id="鳥瞰図">鳥瞰図</h3>
+<p><code>New Map &gt; New Local Scene</code>を選択し、<code>Catalog</code>からデータをドラッグアンドドロップで追加する。
+<img src="img/9-18.png" alt="img"></p>
+<p>ArcGIS Proでは、デフォルトで標高タイルによる3D表示が可能だが、ここではレイヤの標高値を用いた鳥観図作成を行う。ラスタレイヤの<code>Properties &gt; Elevation</code>を選択し、<code>On custom elevation surface</code>を指定する。
+<img src="img/9-19.png" alt="img"></p>
+<p>左クリックで移動、右クリックでズームイン・アウト、マウスホイールを押しながら上下にすると角度のように視点
+が調整できる。
+<img src="img/9-20.png" alt="img"></p>
+<p>値の配色を調整して、視認性を高めることもできる。
+<img src="img/9-21.png" alt="img"></p>
+<p><strong>ここまで作成した図を一枚のパワポにまとめる</strong></p>
+<p><a href="9.html#Menu">▲Menu</a></p>
+<h2 id="課題">課題</h2>
+<p>　、富士山のDEMデータを用いて、標高区分図、傾斜区分図、傾斜方位図、陰影図、3D地図を作成し、レイアウトしてください。</p>
+<h3 id="実習用データ">実習用データ</h3>
+<p>本実習をはじめる前に、<a href="https://github.com/gis-oer/datasets/raw/master/s/fuji_task_s.zip" target="_blank">Fuji_task</a>をダウンロードしてください。データは、<code>JGD_2011_Japan_Zone_8</code>に座標変換してから使用してください。座標変換の方法は、<code>空間データの作成</code>の教材を参照してください。変換したデータのデフォルトの保存先は、<code>Catalog &gt; Databases</code>の各gdbの直下になる。</p>
+<h3 id="完成例">完成例</h3>
+<p><img src="img/t15-1.png" alt="kadai">
+※　上段：左から、標高区分図（段彩図）、傾斜区分図、傾斜方位図、陰影図　下段：3D地図、断面図</p>
+<p>※　色の配色や凡例は、各自で工夫して作成すること</p>
+<p><a href="9.html#Menu">▲Menu</a></p>
 
                                 
                                 </section>
@@ -890,7 +983,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"標高データの可視化と分析","level":"1.2.9","depth":2,"next":{"title":"ArcGIS Online","level":"1.3","depth":1,"path":"ArcGISOnline/README.md","ref":"./ArcGISOnline/README.md","articles":[{"title":"地図の作成とオンライン公開","level":"1.3.1","depth":2,"path":"ArcGISOnline/1/ao1.md","ref":"./ArcGISOnline/1/ao1.md","articles":[]}]},"previous":{"title":"ポイントデータの集計とテーブル結合","level":"1.2.8","depth":2,"path":"ArcGISPro/8/8.md","ref":"./ArcGISPro/8/8.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","-sharing-plus","collapsible-menu","creativecommons","favicon","ga","github","github-buttons"],"root":".","styles":{"website":"styles/website.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yamauchi-inochu/learning"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":{"shortcut":"./img/favicon.ico","bookmark":"./img/favicon.ico","appleTouch":"./img/apple-touch-icon.png","appleTouchMore":{"120x120":"./img/favicon.ico","180x180":"./img/favicon.ico"}},"github-buttons":{"buttons":[{"user":"yamauchi-inochu","repo":"learning","type":"star","size":"small","count":true}]},"creativecommons":{},"ga":{"configuration":"auto","token":"x"},"sharing":{"qq":false,"all":["facebook","google"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"test","honkit":">= 4.0.4","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"test","language":"ja","gitbook":"*"},"file":{"path":"ArcGISPro/9/9.md","mtime":"2024-05-27T01:13:38.844Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2024-06-27T08:30:04.042Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"標高データの可視化と分析","level":"1.2.9","depth":2,"next":{"title":"ArcGIS Online","level":"1.3","depth":1,"path":"ArcGISOnline/README.md","ref":"./ArcGISOnline/README.md","articles":[{"title":"地図の作成とオンライン公開","level":"1.3.1","depth":2,"path":"ArcGISOnline/1/ao1.md","ref":"./ArcGISOnline/1/ao1.md","articles":[]}]},"previous":{"title":"ポイントデータの集計とテーブル結合","level":"1.2.8","depth":2,"path":"ArcGISPro/8/8.md","ref":"./ArcGISPro/8/8.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","-sharing-plus","collapsible-menu","creativecommons","favicon","ga","github","github-buttons"],"root":".","styles":{"website":"styles/website.css"},"pluginsConfig":{"collapsible-menu":{},"github":{"url":"https://github.com/yamauchi-inochu/learning"},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":{"shortcut":"./img/favicon.ico","bookmark":"./img/favicon.ico","appleTouch":"./img/apple-touch-icon.png","appleTouchMore":{"120x120":"./img/favicon.ico","180x180":"./img/favicon.ico"}},"github-buttons":{"buttons":[{"user":"yamauchi-inochu","repo":"learning","type":"star","size":"small","count":true}]},"creativecommons":{},"ga":{"configuration":"auto","token":"x"},"sharing":{"qq":false,"all":["facebook","google"],"douban":false,"facebook":false,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"test","honkit":">= 4.0.4","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"test","language":"ja","gitbook":"*"},"file":{"path":"ArcGISPro/9/9.md","mtime":"2024-07-01T00:10:32.416Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2024-07-01T00:11:36.386Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
